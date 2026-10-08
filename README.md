@@ -52,7 +52,7 @@ python scripts/restore_shared_data.py
 
 推理权重已公开发布到 [Hugging Face](https://huggingface.co/hx03-info/bs6221-mnist-flow-diffusion)，包括 Flow EMA、DDPM EMA 和评价分类器。
 已验证无需登录可下载，且所有冻结文件的 SHA-256 与本地清单一致。
-`models/hub.json` 记录仓库和不可变提交版本 `1edc45c59e32eac9c55ddad3485eb4949a20a5d4`，组员执行：
+`models/hub.json` 记录仓库和不可变提交版本 `1edc45c59e32eac9c55ddad3485eb4949a20a5d4`，执行：
 
 ```bash
 python scripts/download_weights.py
