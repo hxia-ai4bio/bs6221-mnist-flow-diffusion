@@ -1,0 +1,14 @@
+{
+  "frozen_snapshot": "20261002_flow15000_ddpm20000",
+  "model_sha256": "c164a6eca06211d611f9e67149c872d8e20818121351975d84955143457bb559",
+  "architecture_sha256": "3cdb6c4bdd8077c4fdcc9769a25400cbe46544f548e10d64a758eb89fbe71fe5",
+  "solver_code_sha256": "5bcb288c0ba5fad460d4363f992a2ef2fa3e7781df009a712c51cb7f9392517e",
+  "initial_seed": 6221003,
+  "samples_per_class": 10,
+  "batch_size": 100,
+  "dtype": "float32",
+  "device": "mps",
+  "torch": "2.14.1",
+  "normalization": "[-1,1] real images; no clipping of ODE states",
+  "test_set_used": false
+}

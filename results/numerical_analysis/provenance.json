@@ -1,0 +1,7 @@
+{
+  "source": "Original 2026-10-02 experiment; exported 2026-10-08, not recomputed.",
+  "configuration": "configuration.json",
+  "reference_audit": "reference_check.json",
+  "summary": "run_summary.json",
+  "caveats": "Reference refinement is diagnostic, not exact error; hardware timings only compare the recorded environment."
+}

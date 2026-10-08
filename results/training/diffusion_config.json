@@ -1,0 +1,27 @@
+{
+  "architecture": "conditional_tiny_unet_v1",
+  "num_classes": 10,
+  "channels": 24,
+  "diffusion_steps": 100,
+  "batch_size": 64,
+  "learning_rate": 0.001,
+  "ema_decay": 0.995,
+  "seed": 42,
+  "split_sha256": "42af1dd4f83dc1cc662714730942fd0d98070b300aac9bd1fec5644a6882866d",
+  "completed_steps": 20000,
+  "continuation": {
+    "updates": 10000,
+    "lr_start": 0.0003,
+    "lr_end": 3e-05,
+    "validation_images": 1024,
+    "validation_seeds": [
+      3701,
+      3702
+    ],
+    "eval_every": 1000
+  },
+  "best_selection_step": 20000,
+  "epoch_note": "Historical training sampled with replacement; epoch is equivalent passes = step*batch_size/55000.",
+  "loss_note": "Flow predicts velocity; DDPM predicts noise. MSE is not comparable between models.",
+  "training_loss_note": "Historical continuation logs contain validation MSE only; missing training values are not fabricated."
+}

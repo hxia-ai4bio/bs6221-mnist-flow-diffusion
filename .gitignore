@@ -1,0 +1,29 @@
+# Local environments, editor settings and build artifacts
+.DS_Store
+.venv/
+.cache/
+.ppt_build/
+.share_build/
+.vscode/
+__pycache__/
+*.py[cod]
+.ipynb_checkpoints/
+.env
+.env.*
+
+# Generated runs and duplicate archives
+/outputs/
+/Flow_Group_Package/outputs/
+/*.zip
+
+# Reference documents are local reading material
+/*.pdf
+/*.docx
+
+# Root dataset is restored from the bundled compressed MNIST files
+/data/MNIST/
+
+# Model binaries are hosted on Hugging Face
+*.pt
+/checkpoints/smoke/
+/checkpoints/conditional/smoke/

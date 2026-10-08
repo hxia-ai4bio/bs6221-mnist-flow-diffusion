@@ -1,0 +1,6 @@
+{
+  "repo_id": "hx03-info/bs6221-mnist-flow-diffusion",
+  "revision": "1edc45c59e32eac9c55ddad3485eb4949a20a5d4",
+  "local_snapshot": "checkpoints/frozen/20261002_flow15000_ddpm20000",
+  "status": "Published publicly on Hugging Face; immutable weights revision pinned."
+}

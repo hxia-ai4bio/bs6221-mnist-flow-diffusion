@@ -1,0 +1,35 @@
+{
+  "snapshot": "20261002_flow15000_ddpm20000",
+  "weight_type": "EMA",
+  "normalization": "pixel / 127.5 - 1",
+  "image_shape": [
+    1,
+    28,
+    28
+  ],
+  "models": {
+    "flow": {
+      "training_steps": 15000,
+      "parameters": 305289,
+      "source": "checkpoints/conditional/conditional_flow.pt",
+      "source_sha256": "73e3a1262deb4a5ec2198521b0e4038abde28bf3cae9537301c5c23338f1bcfb",
+      "expanded_validation_mse": 0.15700389072299004
+    },
+    "diffusion": {
+      "training_steps": 20000,
+      "parameters": 305289,
+      "source": "checkpoints/conditional/conditional_diffusion.pt",
+      "source_sha256": "2e0ff1e211174bbabf83f5d8e37d3049c57ba30f974c947394e113da1c7b4e7e",
+      "expanded_validation_mse": 0.03770745894871652
+    }
+  },
+  "test_data_used": false,
+  "architecture_source": "notebooks/02_conditional_flow_diffusion.ipynb",
+  "architecture_source_sha256": "3b42bc1be9c154c3ebd92ece0fd2142e75c7b8d23a67527aa1ae9184ea337535",
+  "files_sha256": {
+    "digit_classifier.pt": "ac3f9ef54999668eb99241f84866afc75d1337e8500546f97dbdc3d58623f40a",
+    "diffusion_ema.pt": "76c72ac613d0e6f0f22990c5986e7c3474163a68c3578d62fb3fa926b2fac32d",
+    "model_definitions.py": "3cdb6c4bdd8077c4fdcc9769a25400cbe46544f548e10d64a758eb89fbe71fe5",
+    "flow_ema.pt": "c164a6eca06211d611f9e67149c872d8e20818121351975d84955143457bb559"
+  }
+}

@@ -1,0 +1,11 @@
+# Portable environment for teammates; PyTorch chooses CPU/MPS as available.
+name: bs6221-flow
+channels:
+  - conda-forge
+dependencies:
+  - python=3.12
+  - pip
+  - pip:
+      - -r requirements.txt
+variables:
+  PYTHONNOUSERSITE: '1'

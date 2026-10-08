@@ -1,0 +1,77 @@
+{
+  "validation_date": "2026-10-06",
+  "environment": {
+    "system": "Darwin",
+    "machine": "arm64",
+    "python": "3.12.14",
+    "versions": {
+      "torch": "2.14.1",
+      "numpy": "2.5.3",
+      "matplotlib": "3.11.2",
+      "pandas": "3.0.6",
+      "tqdm": "4.70.1",
+      "nbformat": "5.11.1",
+      "nbclient": "0.11.0",
+      "ipywidgets": "8.1.9"
+    }
+  },
+  "default_notebook": {
+    "mode": "load",
+    "device": "mps",
+    "jupyter_execution": "all 12 code cells completed",
+    "reference_steps": [
+      1024,
+      2048
+    ],
+    "reference_rmse_gap": 1.6857822345191308e-06,
+    "reference_diagnostic_passed": true,
+    "reference_is_exact": false
+  },
+  "cpu_full_execution": {
+    "execution": "all_code_cells_in_order",
+    "device": "cpu",
+    "elapsed_seconds": 51.64575579203665,
+    "reference_gap": 1.6857822345191308e-06,
+    "reference_diagnostic_passed": true
+  },
+  "cpu_training_smoke": {
+    "steps": 2,
+    "checkpoint_reload_and_generation": "passed",
+    "bundled_weight_preserved": true
+  },
+  "mps_training_smoke": {
+    "device": "mps",
+    "training_steps": 2,
+    "best_checkpoint_reload": "passed",
+    "three_solvers": "passed",
+    "bundled_weight_preserved": true
+  },
+  "optional_classifier": {
+    "test_samples": 10000,
+    "test_accuracy": 0.9846,
+    "is_flow_quality_metric": false
+  },
+  "cross_platform_note": "Paths and device branches support Mac/Windows/Linux. Windows/Linux/CUDA were not tested on physical machines. Training smoke checks do not establish model quality.",
+  "relocated_archive_load_test": "passed: unzip to a different path, integrity check, load model, finite forward output",
+  "interactive_notebook": {
+    "platform": "Darwin",
+    "device": "mps",
+    "api_generation_and_save": "passed",
+    "paired_nfe_and_noise_scale": "passed",
+    "reference_branch": "passed",
+    "trajectory_times": "passed",
+    "invalid_parameters": "passed",
+    "scalar_vector_nonautonomous_reverse_ode": "passed",
+    "widget_button_callbacks": "passed",
+    "training_custom_hyperparameters": "passed",
+    "training_smoke_steps": 2,
+    "frozen_weight_preserved": true,
+    "ipywidgets": "8.1.9",
+    "custom_checkpoint_widget_panel": "passed",
+    "generation_label_metadata": "passed",
+    "full_default_code_cells": 12,
+    "jupyterlab_frontend": "4.6.4",
+    "widget_manager_extension": "5.0.16 enabled OK",
+    "relocated_archive_api_generation": "passed"
+  }
+}

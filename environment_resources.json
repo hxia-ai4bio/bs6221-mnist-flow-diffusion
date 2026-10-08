@@ -1,0 +1,83 @@
+{
+  "timestamp": "2026-10-02T02:04:46.065295",
+  "os": {
+    "system": "Darwin",
+    "release": "25.5.0",
+    "version": "Darwin Kernel Version 25.5.0: Mon Apr 27 20:41:15 PDT 2026; root:xnu-12377.121.6~2/RELEASE_ARM64_T6041",
+    "machine": "arm64",
+    "python_version": "3.12.14"
+  },
+  "cpu": {
+    "physical_cores": 14,
+    "logical_cores": 14,
+    "max_frequency_mhz": 4,
+    "architecture": "arm64",
+    "processor": "arm",
+    "current_frequency_mhz": 4
+  },
+  "memory": {
+    "total_gb": 24.0,
+    "available_gb": 7.13,
+    "used_gb": 9.95,
+    "percent_used": 70.3,
+    "swap_total_gb": 11.0,
+    "swap_available_gb": 1.25
+  },
+  "disk": {
+    "path": "/Users/apple/Desktop/BS6221/Project",
+    "total_gb": 926.35,
+    "available_gb": 603.06,
+    "used_gb": 287.89,
+    "percent_used": 32.3
+  },
+  "gpu": {
+    "nvidia_gpus": [],
+    "amd_gpus": [],
+    "apple_silicon": {
+      "name": "Apple M4 Pro",
+      "type": "Apple Silicon",
+      "backend": "Metal",
+      "unified_memory": true,
+      "chipset": "Apple M4 Pro",
+      "gpu_cores": "20"
+    },
+    "total_gpus": 1,
+    "available_backends": [
+      "Metal"
+    ]
+  },
+  "recommendations": {
+    "parallel_processing": {
+      "strategy": "high_parallelism",
+      "suggested_workers": 12,
+      "libraries": [
+        "joblib",
+        "multiprocessing",
+        "dask"
+      ]
+    },
+    "memory_strategy": {
+      "strategy": "moderate_memory",
+      "libraries": [
+        "dask",
+        "zarr"
+      ],
+      "note": "Consider chunking for datasets > 2GB"
+    },
+    "gpu_acceleration": {
+      "available": true,
+      "backends": [
+        "Metal"
+      ],
+      "suggested_libraries": [
+        "pytorch-mps",
+        "tensorflow-metal",
+        "jax-metal"
+      ]
+    },
+    "large_data_handling": {
+      "strategy": "disk_abundant",
+      "note": "Sufficient space for large intermediate files"
+    }
+  }
+}

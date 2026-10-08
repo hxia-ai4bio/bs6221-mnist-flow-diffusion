@@ -1,0 +1,15 @@
+# Portable direct dependencies. See requirements.lock.txt for the original Mac run.
+torch>=2.2,<3
+torchvision>=0.17,<1
+numpy>=1.26,<3
+scipy>=1.11,<2
+matplotlib>=3.8,<4
+pandas>=2.1,<4
+tqdm>=4.66,<5
+jupyterlab>=4,<5
+ipykernel>=6,<8
+ipywidgets>=8.1,<9
+psutil>=5.9,<8
+nbclient>=0.10,<1
+nbformat>=5.10,<6
+huggingface_hub>=1,<3

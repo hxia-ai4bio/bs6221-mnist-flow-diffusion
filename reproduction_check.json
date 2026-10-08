@@ -1,0 +1,20 @@
+{
+  "checked_on": "2026-10-08",
+  "scope": "Clean export of staged GitHub files, with no local weights or root MNIST; existing flow Conda environment used.",
+  "checks": {
+    "public_pinned_hf_download_and_sha256": "passed",
+    "offline_mnist_restore": "passed",
+    "main_notebook_all_cells": "passed",
+    "automatic_training": "disabled",
+    "binary_weights_in_git": "none"
+  },
+  "not_checked": [
+    "Fresh dependency installation",
+    "Windows",
+    "Linux",
+    "CUDA",
+    "Full numerical benchmark rerun",
+    "Widget rendering in teammates browser"
+  ],
+  "hugging_face_revision": "1edc45c59e32eac9c55ddad3485eb4949a20a5d4"
+}

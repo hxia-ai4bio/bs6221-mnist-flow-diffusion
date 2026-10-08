@@ -1,0 +1,25 @@
+{
+  "levels": [
+    1280,
+    2560,
+    5120
+  ],
+  "refinement": [
+    {
+      "coarse_steps": 1280,
+      "fine_steps": 2560,
+      "median_difference": 1.0427171244025046e-06,
+      "max_difference": 2.333483617117108e-06
+    },
+    {
+      "coarse_steps": 2560,
+      "fine_steps": 5120,
+      "median_difference": 7.451574454609763e-07,
+      "max_difference": 4.664503408117071e-06
+    }
+  ],
+  "acceptance_max_rmse": 1e-05,
+  "refinement_check_passed": true,
+  "precision_floor_used": 1e-06,
+  "uncertainty_is_rigorous_bound": false
+}
