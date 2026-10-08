@@ -6,7 +6,9 @@
     "offline_mnist_restore": "passed",
     "main_notebook_all_cells": "passed",
     "automatic_training": "disabled",
-    "binary_weights_in_git": "none"
+    "binary_weights_in_git": "none",
+    "bs6221_flow_conda_environment_notebook": "passed",
+    "bs6221_flow_conda_pip_check": "passed"
   },
   "not_checked": [
     "Fresh dependency installation",

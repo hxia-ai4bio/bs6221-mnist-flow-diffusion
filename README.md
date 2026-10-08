@@ -18,9 +18,20 @@ cd bs6221-mnist-flow-diffusion
 进入仓库根目录后执行：
 
 ```bash
+export PYTHONNOUSERSITE=1
 conda env create -f environment.yml
 conda activate bs6221-flow
 python -m ipykernel install --user --name bs6221-flow-shared --display-name "BS6221 Flow (shared)"
+```
+
+Windows PowerShell 在创建环境前使用 `$env:PYTHONNOUSERSITE="1"`，替代上面的 `export`。
+这一步必须在安装前执行，避免安装器把全局用户目录中的包当作新环境已有依赖。
+
+若已创建环境后出现 `No module named 'fastjsonschema'`，激活环境并执行：
+
+```bash
+python -s -m pip install -r requirements.txt
+python -s -m pip check
 ```
 
 没有 Conda：使用 Python 3.10–3.12 创建虚拟环境，激活后运行：
