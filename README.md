@@ -191,7 +191,7 @@ results/                # 精选实验记录；有来源，非自动更新的缓
 docs/                   # 实验协议、模型说明
 ```
 
-组员请下载整个仓库；新版 `Flow_Group_Package/Flow_Group.ipynb` 也调用共享 Python 模块，
+请下载整个仓库；新版 `Flow_Group_Package/Flow_Group.ipynb` 也调用共享 Python 模块，
 不能只复制其文件夹。原 ZIP 保留为旧独立版本，本次 GitHub 发布不使用旧 ZIP。
 
 ## 参考
