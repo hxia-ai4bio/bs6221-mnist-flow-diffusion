@@ -3,9 +3,9 @@ from pathlib import Path
 import copy, json, math, time, warnings
 import numpy as np
 import pandas as pd
+from .output import finish_figure, print_table
 import matplotlib.pyplot as plt
 import torch
-from IPython.display import display
 from .models import ConditionalTinyUNet
 from .runtime import ROOT, choose_device, synchronize, sha256
 OUT = ROOT / 'outputs/demo'
@@ -80,7 +80,7 @@ def image_grid(images, title):
         ax.imshow(x[0], cmap='gray', vmin=-1, vmax=1)
     fig.suptitle(title)
     fig.tight_layout()
-    plt.show()
+    finish_figure()
 
 def _integer(value, name, minimum=1):
     if isinstance(value, (bool, np.bool_)) or not isinstance(value, (int, np.integer)) or value < minimum:
@@ -101,7 +101,7 @@ def load_flow(weights=None, device_preference='auto'):
     ck = torch.load(path, map_location='cpu', weights_only=True)
     config = ck.get('config', {})
     if ck.get('kind') != 'flow' or config.get('architecture') != 'conditional_tiny_unet_v1' or config.get('channels') != 24:
-        raise ValueError('权重与本 notebook 的模型结构不匹配')
+        raise ValueError('权重与当前 API 的模型结构不匹配')
     net = ConditionalTinyUNet(24)
     net.load_state_dict(ck['state_dict'], strict=True)
     net = net.to(choose_device(device_preference)).eval().requires_grad_(False)
@@ -147,7 +147,7 @@ def _generation_figure(result):
         ax.imshow(x[0], cmap='gray', vmin=-1, vmax=1)
         ax.set_title(f'label={int(labels[i])}, #{i}', fontsize=9)
     p = result['params']
-    fig.suptitle(f'{p['method']} | steps={p['steps']} | NFE={p['nfe']} | seed={p['seed']}')
+    fig.suptitle(f"{p['method']} | steps={p['steps']} | NFE={p['nfe']} | seed={p['seed']}")
     fig.tight_layout()
     return fig
 
@@ -166,7 +166,7 @@ def show_trajectory(result, index=0):
         ax.axis('off')
     fig.suptitle('Actual ODE trajectory')
     fig.tight_layout()
-    plt.show()
+    finish_figure()
     return fig
 
 def generate_images(digit=3, n=8, method='Euler', steps=40, seed=2026, noise_scale=1.0, trajectory=False, show=True, save=False, net=None, noise=None):
@@ -195,7 +195,7 @@ def generate_images(digit=3, n=8, method='Euler', steps=40, seed=2026, noise_sca
             (folder / 'params.json').write_text(json.dumps(result['params'], indent=2), encoding='utf-8')
             result['saved_to'] = folder
         if show:
-            plt.show()
+            finish_figure()
         else:
             plt.close(fig)
     if show and trajectory:
@@ -246,7 +246,7 @@ def compare_solvers(digit=3, n=4, steps=20, nfe_budget=None, seed=2026, noise_sc
     table = pd.DataFrame(rows)
     comparison = {'table': table, 'results': results, 'reference': reference, 'reference_gap': reference_gap, 'reference_diagnostic_passed': diagnostic_passed, 'noise': z, 'labels': y, 'comparison_mode': 'same_steps' if nfe_budget is None else 'same_nfe'}
     if show:
-        display(table.round(6))
+        print_table(table.round(6))
         columns = min(n, 8)
         fig, axes = plt.subplots(3, columns, figsize=(1.5 * columns, 5), squeeze=False)
         for row, (name, result) in enumerate(results.items()):
@@ -258,9 +258,9 @@ def compare_solvers(digit=3, n=4, steps=20, nfe_budget=None, seed=2026, noise_sc
                 if col == 0:
                     ax.set_ylabel(name)
                 ax.set_title(f'label={int(y[col])}', fontsize=9)
-        fig.suptitle(f'{comparison['comparison_mode']} | seed={seed} | same initial noise')
+        fig.suptitle(f"{comparison['comparison_mode']} | seed={seed} | same initial noise")
         fig.tight_layout()
-        plt.show()
+        finish_figure()
         if reference is not None:
             print(f'参考加密差异: {reference_gap:.3g}; 诊断通过: {diagnostic_passed}')
     return comparison

@@ -19,8 +19,12 @@ def main():
     parser.add_argument('--device',choices=['auto','cpu','mps','cuda'],default='auto')
     parser.add_argument('--run-dir',type=Path)
     a=parser.parse_args()
-    out,_=train_model(a.model,a.epochs,a.steps,a.batch_size,a.lr,a.ema_decay,a.seed,
+    out,history=train_model(a.model,a.epochs,a.steps,a.batch_size,a.lr,a.ema_decay,a.seed,
                       a.validation_every,a.validation_samples,a.device,a.run_dir)
+    from bs6221_flow.output import configure_output
+    from bs6221_flow.presentation import show_training
+    configure_output(out)
+    show_training(history=history,kind=a.model)
     print('Training outputs:',out)
 
 if __name__=='__main__':main()

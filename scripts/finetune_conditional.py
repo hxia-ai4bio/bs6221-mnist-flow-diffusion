@@ -2,7 +2,7 @@
 
 No architecture/data/sampler changes. Select EMA checkpoints using 1,024 held-out
 images and two fixed noise draws. Generated-image metrics are descriptive only.
-All baseline weights and notebook outputs are backed up before training.
+All baseline weights and generated outputs are backed up before training.
 
 Training costs O(updates * batch * network cost), with one batch on the GPU.
 Evaluation costs O(samples * sampling steps * network cost); images stay on CPU.
@@ -64,7 +64,7 @@ def prepare_run(run):
         shutil.copy2(ROOT/'checkpoints/conditional'/name, target)
         hashes[name] = digest(target)
     shutil.copy2(ROOT/'checkpoints/conditional/digit_classifier.pt', baseline/'digit_classifier.pt')
-    for source in ('outputs/conditional', 'outputs/sampling_branches', 'notebooks'):
+    for source in ('outputs/conditional', 'outputs/sampling_branches'):
         shutil.copytree(ROOT/source, baseline/Path(source).name)
     save_json({'checkpoint_sha256': hashes, 'test_set_used': False}, manifest)
 

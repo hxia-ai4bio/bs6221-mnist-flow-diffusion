@@ -1,4 +1,4 @@
-"""Paths and explicit device selection shared by the CLI and notebooks."""
+"""Paths and explicit device selection shared by the Python CLI."""
 from pathlib import Path
 import hashlib
 import torch

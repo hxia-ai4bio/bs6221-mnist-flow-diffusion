@@ -33,7 +33,7 @@ python scripts/run_numerics.py --pilot --out outputs/numerical_analysis/pilot_ne
 
 已有缓存与配置不兼容时脚本会拒绝使用。相同 GPU 种子不保证跨平台逐位一致。
 `results/numerical_analysis/` 是原运行输出的精选导出，不是新脚本自动重跑的结果。
-完整分析脚本目前自动选择 MPS 或 CPU；交互面板支持显式 CPU/MPS/CUDA 模型。
+完整分析脚本目前自动选择 MPS 或 CPU；新的 demo.py 数值命令支持显式 CPU/MPS/CUDA 模型。
 
 ## 生成质量
 

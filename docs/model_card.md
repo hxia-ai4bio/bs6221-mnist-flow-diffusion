@@ -43,8 +43,8 @@ These are custom PyTorch checkpoints, not a Transformers/Diffusers pipeline.
 Download a pinned commit and verify the manifest hashes, then instantiate
 `ConditionalTinyUNet(24)` and load the checkpoint's `state_dict` with
 `torch.load(path, map_location='cpu', weights_only=True)`.
-Generation APIs and the interactive notebook are provided in the accompanying
-BS6221 GitHub project; its URL will be added after publication.
+Generation APIs and Python/Bash commands are provided in the accompanying
+[BS6221 GitHub project](https://github.com/hxia-ai4bio/bs6221-mnist-flow-diffusion).
 
 ## Intended use and limitations
 

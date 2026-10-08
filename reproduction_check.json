@@ -1,22 +1,26 @@
 {
   "checked_on": "2026-10-08",
-  "scope": "Clean export of staged GitHub files, with no local weights or root MNIST; existing flow Conda environment used.",
+  "workflow": "Python and Bash only",
+  "scope": "Independent export of staged files without local weights, root MNIST or notebooks; existing bs6221-flow environment used.",
   "checks": {
     "public_pinned_hf_download_and_sha256": "passed",
     "offline_mnist_restore": "passed",
-    "main_notebook_all_cells": "passed",
-    "automatic_training": "disabled",
-    "binary_weights_in_git": "none",
-    "bs6221_flow_conda_environment_notebook": "passed",
-    "bs6221_flow_conda_pip_check": "passed"
+    "all_cli_demonstrations": "passed",
+    "bash_entry": "passed",
+    "python_3_10_syntax": "passed",
+    "no_jupyter_runtime_import_guard": "passed",
+    "same_custom_noise_reproduces_identical_images_on_cpu": "passed",
+    "numerical_exploration_and_failed_reference_gating": "passed",
+    "flow_and_ddpm_two_step_training_and_reload": "passed",
+    "binary_weights_and_notebooks_in_git": "none"
   },
   "not_checked": [
-    "Fresh dependency installation",
+    "Fresh minimal dependency installation",
     "Windows",
     "Linux",
     "CUDA",
     "Full numerical benchmark rerun",
-    "Widget rendering in teammates browser"
+    "Training convergence"
   ],
   "hugging_face_revision": "1edc45c59e32eac9c55ddad3485eb4949a20a5d4"
 }

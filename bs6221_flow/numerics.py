@@ -6,9 +6,9 @@ Reference solutions are CPU float64 approximations; refinement is a diagnostic.
 import copy,math,time
 import numpy as np
 import pandas as pd
+from .output import finish_figure, print_table
 import matplotlib.pyplot as plt
 import torch
-from IPython.display import display
 from .sampling import sample,STAGES,_initial_state
 
 
@@ -61,12 +61,12 @@ def compare_numerics(net,digit=3,seed=42,samples=2,steps=(4,8,16,32),
     axes[1].set(xlabel='NFE',ylabel='RMSE to approximate reference',title='Matched NFE')
     axes[2].set(xlabel='NFE',ylabel=f'Batch seconds ({samples} images)',title=f'Median of {repeats} repeats')
     for ax in axes:ax.legend();ax.grid(alpha=.2)
-    fig.tight_layout();plt.show()
+    fig.tight_layout();finish_figure()
     report={'reference_steps':list(reference_steps),'max_refinement_gap':float(gap.max()),
             'reference_diagnostic_passed':bool(gap.max()<=tolerance),'reference_tolerance':tolerance,
             'reference_is_exact':False,'device':str(next(net.parameters()).device),'seed':seed,
             'labels':y.tolist(),'weight_sha256':getattr(net,'flow_weight_sha256',None),
             'timing_excludes_loading_plotting_and_reference':True}
-    print(report);display(convergence);display(same_nfe);display(pd.DataFrame(orders))
+    print(report);print_table(convergence);print_table(same_nfe);print_table(pd.DataFrame(orders))
     return {'convergence':convergence,'same_nfe':same_nfe,'orders':pd.DataFrame(orders),
             'reference_report':report,'endpoints':endpoints,'noise':z,'labels':y}

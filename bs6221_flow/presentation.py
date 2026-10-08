@@ -7,9 +7,9 @@ from pathlib import Path
 import json,math
 import numpy as np
 import pandas as pd
+from .output import finish_figure, print_table
 import matplotlib.pyplot as plt
 import torch
-from IPython.display import display,Image
 from .data import examples,training_data
 from .runtime import ROOT,choose_device
 from .models import ConditionalTinyUNet,cosine_schedule
@@ -21,7 +21,7 @@ def show_training(history=None,kind='flow'):
         path=ROOT/'results/training'/f'{kind}_history.csv'
         table=pd.read_csv(path)
         config=json.loads((ROOT/'results/training'/f'{kind}_config.json').read_text())
-        display(pd.Series(config,name='Original training configuration').to_frame())
+        print_table(pd.Series(config,name='Original training configuration').to_frame())
     else: table=pd.DataFrame(history)
     if table.empty: raise ValueError('No training history')
     fig,axes=plt.subplots(1,2,figsize=(11,3.3))
@@ -34,15 +34,16 @@ def show_training(history=None,kind='flow'):
     axes[0].set(xlabel='Optimizer step',ylabel='MSE',title=f'{kind}: own prediction target')
     axes[1].set(xlabel='Epoch / equivalent data passes',ylabel='Validation MSE',title='Fixed held-out validation')
     for ax in axes:ax.legend(fontsize=8);ax.grid(alpha=.2)
-    fig.tight_layout();plt.show()
-    display(table.tail(8));return table
+    fig.suptitle(f"{kind} training history")
+    fig.tight_layout();finish_figure()
+    print_table(table.tail(8));return table
 
 
 def image_sequence(states,times,title):
     fig,axes=plt.subplots(1,len(states),figsize=(2*len(states),2.5),squeeze=False)
     for ax,state,t in zip(axes[0],states,times):
         ax.imshow(state[0,0],cmap='gray',vmin=-1,vmax=1);ax.axis('off');ax.set_title(f'{t:.2f}')
-    fig.suptitle(title);fig.tight_layout();plt.show();return fig
+    fig.suptitle(title);fig.tight_layout();finish_figure();return fig
 
 
 def forward_demo(digit=3,seed=42,diffusion_steps=100):
@@ -83,7 +84,7 @@ def probability_paths(seed=42,samples=300):
         ax.set_title(f't={t:.2f}');ax.set_xlabel('Fixed train PCA 1')
     axes[0].set_ylabel('Fixed train PCA 2')
     fig.suptitle(f'Constructed Flow probability path: noise -> training images; 2D variance {variance:.1%}')
-    fig.tight_layout();plt.show()
+    fig.tight_layout();finish_figure()
     print('This is an empirical projected path, not learned generation or a 784D density. Time t=1-s of the image-to-noise view.')
     return {'clouds':clouds,'times':levels,'indices':ids,'variance_ratio':variance}
 
@@ -125,7 +126,13 @@ def noise_preview(seed=42,scale=1.):
 def show_saved_numerics():
     folder=ROOT/'results/numerical_analysis'
     metadata=json.loads((folder/'provenance.json').read_text())
-    display(pd.Series(metadata,name='Original experiment provenance').to_frame())
+    print_table(pd.Series(metadata,name='Original experiment provenance').to_frame())
     for name in ['analytic_orders.csv','flow_observed_orders.csv','equal_nfe_comparison.csv']:
-        display(pd.read_csv(folder/name))
-    for path in sorted(folder.glob('*.png')):display(Image(filename=str(path),width=900))
+        print_table(pd.read_csv(folder/name))
+    import shutil
+    from .output import _FOLDER
+    _FOLDER.mkdir(parents=True,exist_ok=True)
+    for path in sorted(folder.glob('*.png')):
+        target=_FOLDER/path.name
+        if path.resolve()!=target.resolve():shutil.copy2(path,target)
+        print('Saved historical figure:',target)

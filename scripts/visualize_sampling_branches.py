@@ -1,7 +1,6 @@
-"""Visualize fixed-start conditional Flow and DDPM without editing notebooks.
+"""Visualize fixed-start conditional Flow and DDPM using static Python APIs.
 
-Reuses architecture definitions and schedules from the existing conditional
-notebook. Runs inference only and retains every generated sample.
+Reuses architecture definitions and schedules from the static conditional model module. Runs inference only and retains every generated sample.
 """
 from pathlib import Path
 import argparse
@@ -17,7 +16,6 @@ import matplotlib.pyplot as plt
 from matplotlib import patheffects
 from matplotlib.animation import FuncAnimation, PillowWriter
 from matplotlib.offsetbox import AnnotationBbox, OffsetImage
-import nbformat
 import numpy as np
 import torch
 from torch import nn
@@ -29,7 +27,7 @@ ROOT = Path(__file__).resolve().parents[1]
 
 
 def load_definitions(extra_names=()):
-    """Compatibility namespace sourced from static Python modules, never notebooks."""
+    """Compatibility namespace sourced from static Python modules, without dynamic code extraction."""
     import sys
     sys.path.insert(0, str(ROOT))
     from bs6221_flow import models, legacy_samplers
@@ -135,8 +133,6 @@ def main():
     args = parser.parse_args()
     out = ROOT / 'outputs/sampling_branches'
     out.mkdir(parents=True, exist_ok=True)
-    notebooks = list((ROOT / 'notebooks').glob('*.ipynb'))
-    original_hashes = {str(p): hashlib.sha256(p.read_bytes()).hexdigest() for p in notebooks}
     torch.set_num_threads(4)
     torch.manual_seed(42)
     device = torch.device('mps' if torch.backends.mps.is_available() else 'cpu')
@@ -273,7 +269,6 @@ def main():
                'quality_comparison': False, 'inference_seconds_including_replay': elapsed,
                'note': 'DDPM uses discrete Gaussian posterior sampling, analogous to stochastic SDE increments. Determinism refers to fixed model, initial state, condition and solver.'}
     (out / 'run_summary.json').write_text(json.dumps(summary, indent=2) + '\n')
-    assert original_hashes == {str(p): hashlib.sha256(p.read_bytes()).hexdigest() for p in notebooks}
     print(f'Saved figures, animation and all trajectories to {out}. Notebooks unchanged.', flush=True)
 
 

@@ -1,4 +1,3 @@
-# Direct dependencies; requirements.lock.txt records the verified installed versions.
 torch
 torchvision
 numpy
@@ -6,8 +5,5 @@ scipy
 matplotlib
 pandas
 tqdm
-jupyterlab
-ipykernel
 psutil
-ipywidgets
 huggingface_hub
